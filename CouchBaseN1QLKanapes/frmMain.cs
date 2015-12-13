@@ -19,11 +19,6 @@ namespace CouchBaseN1QLKanapes
             this.Text += System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
-        private void btn_About_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("EmptyAbout");
-        }
-
         private void frmMain_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.N)
@@ -97,5 +92,11 @@ namespace CouchBaseN1QLKanapes
         {
             this.txt_result.Text = "";
         }
+
+        private void btn_About_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("Empty for now...");
+        }
+
     }
 }
