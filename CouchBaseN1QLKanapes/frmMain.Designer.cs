@@ -34,39 +34,39 @@
             this.spl_workbench = new System.Windows.Forms.SplitContainer();
             this.spl_workbench_inner = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.txt_n1qlCmd = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.num_Limit = new System.Windows.Forms.NumericUpDown();
-            this.chk_saveScrapbookOnExit = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btn_run = new System.Windows.Forms.ToolStripButton();
+            this.txt_n1qlCmd = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.txt_memo = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.chk_saveScrapbookOnExit = new System.Windows.Forms.CheckBox();
             this.tab_Results = new System.Windows.Forms.TabControl();
             this.tabPage_results = new System.Windows.Forms.TabPage();
             this.tls_results = new System.Windows.Forms.ToolStrip();
+            this.btn_resultsClear = new System.Windows.Forms.ToolStripButton();
             this.txt_result = new System.Windows.Forms.TextBox();
             this.tabPage_JSON = new System.Windows.Forms.TabPage();
             this.tabPage_output = new System.Windows.Forms.TabPage();
             this.tls_output = new System.Windows.Forms.ToolStrip();
+            this.btn_outputClear = new System.Windows.Forms.ToolStripButton();
             this.txt_Output = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.txt_elapsedTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.spl_main = new System.Windows.Forms.SplitContainer();
-            this.trv_connections = new System.Windows.Forms.TreeView();
-            this.iml_imageList = new System.Windows.Forms.ImageList(this.components);
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.btn_About = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btn_run = new System.Windows.Forms.ToolStripButton();
-            this.btn_resultsClear = new System.Windows.Forms.ToolStripButton();
-            this.btn_outputClear = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.btn_addConnection = new System.Windows.Forms.ToolStripButton();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.trv_connections = new System.Windows.Forms.TreeView();
+            this.iml_imageList = new System.Windows.Forms.ImageList(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.btn_About = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.spl_workbench)).BeginInit();
             this.spl_workbench.Panel1.SuspendLayout();
             this.spl_workbench.Panel2.SuspendLayout();
@@ -76,8 +76,9 @@
             this.spl_workbench_inner.Panel2.SuspendLayout();
             this.spl_workbench_inner.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_Limit)).BeginInit();
+            this.toolStrip1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.tab_Results.SuspendLayout();
             this.tabPage_results.SuspendLayout();
             this.tls_results.SuspendLayout();
@@ -88,10 +89,9 @@
             this.spl_main.Panel1.SuspendLayout();
             this.spl_main.Panel2.SuspendLayout();
             this.spl_main.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.toolStrip2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // spl_workbench
@@ -147,41 +147,6 @@
             this.panel1.Size = new System.Drawing.Size(394, 196);
             this.panel1.TabIndex = 7;
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this.toolStripSeparator1,
-            this.btn_run});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(390, 25);
-            this.toolStrip1.TabIndex = 7;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // txt_n1qlCmd
-            // 
-            this.txt_n1qlCmd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_n1qlCmd.Location = new System.Drawing.Point(0, 28);
-            this.txt_n1qlCmd.Multiline = true;
-            this.txt_n1qlCmd.Name = "txt_n1qlCmd";
-            this.txt_n1qlCmd.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txt_n1qlCmd.Size = new System.Drawing.Size(389, 164);
-            this.txt_n1qlCmd.TabIndex = 1;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(259, 4);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Limit Results";
-            // 
             // num_Limit
             // 
             this.num_Limit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -205,6 +170,95 @@
             0,
             0});
             // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(259, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Limit Results";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.toolStripSeparator1,
+            this.btn_run});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(390, 25);
+            this.toolStrip1.TabIndex = 7;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(69, 22);
+            this.toolStripLabel1.Text = "N1QL Panel";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btn_run
+            // 
+            this.btn_run.Image = global::CouchBaseN1QLKanapes.Properties.Resources._1449993628_play;
+            this.btn_run.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_run.Name = "btn_run";
+            this.btn_run.Size = new System.Drawing.Size(71, 22);
+            this.btn_run.Text = "Run (F5)";
+            this.btn_run.ToolTipText = "F5 Run";
+            this.btn_run.Click += new System.EventHandler(this.btn_run_Click);
+            // 
+            // txt_n1qlCmd
+            // 
+            this.txt_n1qlCmd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_n1qlCmd.Location = new System.Drawing.Point(0, 28);
+            this.txt_n1qlCmd.Multiline = true;
+            this.txt_n1qlCmd.Name = "txt_n1qlCmd";
+            this.txt_n1qlCmd.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txt_n1qlCmd.Size = new System.Drawing.Size(389, 164);
+            this.txt_n1qlCmd.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.txt_memo);
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.chk_saveScrapbookOnExit);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(230, 196);
+            this.panel3.TabIndex = 5;
+            // 
+            // txt_memo
+            // 
+            this.txt_memo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_memo.Location = new System.Drawing.Point(3, 28);
+            this.txt_memo.Multiline = true;
+            this.txt_memo.Name = "txt_memo";
+            this.txt_memo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txt_memo.Size = new System.Drawing.Size(220, 161);
+            this.txt_memo.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 4);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Scrapbook";
+            // 
             // chk_saveScrapbookOnExit
             // 
             this.chk_saveScrapbookOnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -218,27 +272,6 @@
             this.chk_saveScrapbookOnExit.Text = "save on exit";
             this.chk_saveScrapbookOnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.chk_saveScrapbookOnExit.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 4);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Scrapbook";
-            // 
-            // txt_memo
-            // 
-            this.txt_memo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_memo.Location = new System.Drawing.Point(3, 28);
-            this.txt_memo.Multiline = true;
-            this.txt_memo.Name = "txt_memo";
-            this.txt_memo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txt_memo.Size = new System.Drawing.Size(220, 161);
-            this.txt_memo.TabIndex = 2;
             // 
             // tab_Results
             // 
@@ -276,6 +309,14 @@
             this.tls_results.Text = "toolStrip3";
             this.tls_results.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tls_results_ItemClicked);
             // 
+            // btn_resultsClear
+            // 
+            this.btn_resultsClear.Image = global::CouchBaseN1QLKanapes.Properties.Resources._1449998789_button_cancel;
+            this.btn_resultsClear.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_resultsClear.Name = "btn_resultsClear";
+            this.btn_resultsClear.Size = new System.Drawing.Size(54, 22);
+            this.btn_resultsClear.Text = "Clear";
+            // 
             // txt_result
             // 
             this.txt_result.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -285,7 +326,7 @@
             this.txt_result.Multiline = true;
             this.txt_result.Name = "txt_result";
             this.txt_result.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txt_result.Size = new System.Drawing.Size(621, 62);
+            this.txt_result.Size = new System.Drawing.Size(617, 62);
             this.txt_result.TabIndex = 0;
             // 
             // tabPage_JSON
@@ -293,7 +334,7 @@
             this.tabPage_JSON.Location = new System.Drawing.Point(4, 22);
             this.tabPage_JSON.Name = "tabPage_JSON";
             this.tabPage_JSON.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_JSON.Size = new System.Drawing.Size(551, 93);
+            this.tabPage_JSON.Size = new System.Drawing.Size(620, 93);
             this.tabPage_JSON.TabIndex = 1;
             this.tabPage_JSON.Text = "JSON";
             this.tabPage_JSON.UseVisualStyleBackColor = true;
@@ -305,7 +346,7 @@
             this.tabPage_output.Location = new System.Drawing.Point(4, 22);
             this.tabPage_output.Name = "tabPage_output";
             this.tabPage_output.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_output.Size = new System.Drawing.Size(551, 93);
+            this.tabPage_output.Size = new System.Drawing.Size(620, 93);
             this.tabPage_output.TabIndex = 2;
             this.tabPage_output.Text = "Output";
             this.tabPage_output.UseVisualStyleBackColor = true;
@@ -317,10 +358,18 @@
             this.btn_outputClear});
             this.tls_output.Location = new System.Drawing.Point(3, 3);
             this.tls_output.Name = "tls_output";
-            this.tls_output.Size = new System.Drawing.Size(545, 25);
+            this.tls_output.Size = new System.Drawing.Size(614, 25);
             this.tls_output.TabIndex = 2;
             this.tls_output.Text = "toolStrip2";
             this.tls_output.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.txt_Output_ItemClicked);
+            // 
+            // btn_outputClear
+            // 
+            this.btn_outputClear.Image = global::CouchBaseN1QLKanapes.Properties.Resources._1449998789_button_cancel;
+            this.btn_outputClear.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_outputClear.Name = "btn_outputClear";
+            this.btn_outputClear.Size = new System.Drawing.Size(54, 22);
+            this.btn_outputClear.Text = "Clear";
             // 
             // txt_Output
             // 
@@ -331,7 +380,7 @@
             this.txt_Output.Multiline = true;
             this.txt_Output.Name = "txt_Output";
             this.txt_Output.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txt_Output.Size = new System.Drawing.Size(551, 62);
+            this.txt_Output.Size = new System.Drawing.Size(617, 62);
             this.txt_Output.TabIndex = 1;
             // 
             // statusStrip1
@@ -376,6 +425,44 @@
             this.spl_main.SplitterDistance = 160;
             this.spl_main.TabIndex = 2;
             // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.toolStrip2);
+            this.panel2.Controls.Add(this.trv_connections);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(160, 341);
+            this.panel2.TabIndex = 2;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel2,
+            this.btn_addConnection});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(156, 25);
+            this.toolStrip2.TabIndex = 2;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(74, 22);
+            this.toolStripLabel2.Text = "Connections";
+            // 
+            // btn_addConnection
+            // 
+            this.btn_addConnection.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_addConnection.Image = global::CouchBaseN1QLKanapes.Properties.Resources._1450000599_onebit_31;
+            this.btn_addConnection.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_addConnection.Name = "btn_addConnection";
+            this.btn_addConnection.Size = new System.Drawing.Size(23, 22);
+            this.btn_addConnection.Text = "Add";
+            // 
             // trv_connections
             // 
             this.trv_connections.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -416,93 +503,6 @@
             this.btn_About.Text = "About";
             this.btn_About.Click += new System.EventHandler(this.btn_About_Click_1);
             // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(69, 22);
-            this.toolStripLabel1.Text = "N1QL Panel";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btn_run
-            // 
-            this.btn_run.Image = global::CouchBaseN1QLKanapes.Properties.Resources._1449993628_play;
-            this.btn_run.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_run.Name = "btn_run";
-            this.btn_run.Size = new System.Drawing.Size(71, 22);
-            this.btn_run.Text = "Run (F5)";
-            this.btn_run.ToolTipText = "F5 Run";
-            this.btn_run.Click += new System.EventHandler(this.btn_run_Click);
-            // 
-            // btn_resultsClear
-            // 
-            this.btn_resultsClear.Image = global::CouchBaseN1QLKanapes.Properties.Resources._1449998789_button_cancel;
-            this.btn_resultsClear.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_resultsClear.Name = "btn_resultsClear";
-            this.btn_resultsClear.Size = new System.Drawing.Size(54, 22);
-            this.btn_resultsClear.Text = "Clear";
-            // 
-            // btn_outputClear
-            // 
-            this.btn_outputClear.Image = global::CouchBaseN1QLKanapes.Properties.Resources._1449998789_button_cancel;
-            this.btn_outputClear.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_outputClear.Name = "btn_outputClear";
-            this.btn_outputClear.Size = new System.Drawing.Size(54, 22);
-            this.btn_outputClear.Text = "Clear";
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.toolStrip2);
-            this.panel2.Controls.Add(this.trv_connections);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(160, 341);
-            this.panel2.TabIndex = 2;
-            // 
-            // toolStrip2
-            // 
-            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel2,
-            this.btn_addConnection});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(156, 25);
-            this.toolStrip2.TabIndex = 2;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(74, 22);
-            this.toolStripLabel2.Text = "Connections";
-            // 
-            // btn_addConnection
-            // 
-            this.btn_addConnection.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btn_addConnection.Image = global::CouchBaseN1QLKanapes.Properties.Resources._1450000599_onebit_31;
-            this.btn_addConnection.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_addConnection.Name = "btn_addConnection";
-            this.btn_addConnection.Size = new System.Drawing.Size(23, 22);
-            this.btn_addConnection.Text = "Add";
-            // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.txt_memo);
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.chk_saveScrapbookOnExit);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(230, 196);
-            this.panel3.TabIndex = 5;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -527,9 +527,11 @@
             this.spl_workbench_inner.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.num_Limit)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.num_Limit)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.tab_Results.ResumeLayout(false);
             this.tabPage_results.ResumeLayout(false);
             this.tabPage_results.PerformLayout();
@@ -545,14 +547,12 @@
             this.spl_main.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spl_main)).EndInit();
             this.spl_main.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

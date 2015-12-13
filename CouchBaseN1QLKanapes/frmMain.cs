@@ -33,10 +33,10 @@ namespace CouchBaseN1QLKanapes
         }
 
         private void Run() {
-            this.Cursor = Cursors.WaitCursor;
             if (this.txt_n1qlCmd.SelectedText == "" && this.txt_n1qlCmd.Text == "")
             {
-                this.txt_elapsedTime.Text = "A big nothing was send to Couchbase...";
+                string s = "A big nothing was send to Couchbase...";
+                this.logOutput(s);
                 return;
             }
             string n1qlStr = "";
@@ -49,21 +49,20 @@ namespace CouchBaseN1QLKanapes
                 n1qlStr = this.txt_n1qlCmd.Text;
             }
 
-
+            this.Cursor = Cursors.WaitCursor;
             var watch = System.Diagnostics.Stopwatch.StartNew();
-            watch.Stop();
             try {
             //ADD N1QL Command Logic Here
 
             }catch (Exception ex){
                 MessageBox.Show(ex.Message, "Error");
-                this.logOutput(ex.Message, false);
+                this.logOutput(ex.Message);
             }
-
+            watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
             string elapsedTime = TimeSpan.FromMilliseconds(elapsedMs).ToString(@"hh\:mm\:ss\.fff") + " ms"; ;
             this.txt_elapsedTime.Text = elapsedTime;
-            this.logOutput(elapsedTime, false);
+            this.logOutput(elapsedTime);
             this.Cursor = Cursors.Default;
         }
 
@@ -80,7 +79,7 @@ namespace CouchBaseN1QLKanapes
             {
                 this.txt_Output.Text = "";
             }
-            this.txt_result.AppendText(_value + Environment.NewLine);
+            this.txt_Output.AppendText(DateTime.Now.ToString() + " -> " + _value + Environment.NewLine);
         }
 
         private void txt_Output_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
