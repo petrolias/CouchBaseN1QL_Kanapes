@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Connections");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Connections");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -269,12 +269,14 @@
             // 
             // txt_result
             // 
-            this.txt_result.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txt_result.Location = new System.Drawing.Point(3, 3);
+            this.txt_result.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_result.Location = new System.Drawing.Point(3, 31);
             this.txt_result.Multiline = true;
             this.txt_result.Name = "txt_result";
             this.txt_result.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txt_result.Size = new System.Drawing.Size(547, 86);
+            this.txt_result.Size = new System.Drawing.Size(547, 58);
             this.txt_result.TabIndex = 0;
             // 
             // tabPage_JSON
@@ -313,12 +315,14 @@
             // 
             // txt_Output
             // 
-            this.txt_Output.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txt_Output.Location = new System.Drawing.Point(3, 3);
+            this.txt_Output.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_Output.Location = new System.Drawing.Point(3, 31);
             this.txt_Output.Multiline = true;
             this.txt_Output.Name = "txt_Output";
             this.txt_Output.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txt_Output.Size = new System.Drawing.Size(547, 86);
+            this.txt_Output.Size = new System.Drawing.Size(547, 58);
             this.txt_Output.TabIndex = 1;
             // 
             // statusStrip1
@@ -383,10 +387,10 @@
             this.trv_connections.Location = new System.Drawing.Point(3, 27);
             this.trv_connections.MinimumSize = new System.Drawing.Size(136, 307);
             this.trv_connections.Name = "trv_connections";
-            treeNode2.Name = "nd_connections";
-            treeNode2.Text = "Connections";
+            treeNode1.Name = "nd_connections";
+            treeNode1.Text = "Connections";
             this.trv_connections.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.trv_connections.SelectedImageIndex = 0;
             this.trv_connections.Size = new System.Drawing.Size(136, 310);
             this.trv_connections.TabIndex = 0;
