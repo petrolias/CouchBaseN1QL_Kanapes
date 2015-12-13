@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Connections");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Connections");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -85,6 +85,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_run,
             this.toolStripSeparator1,
@@ -300,6 +301,7 @@
             // 
             // tls_output
             // 
+            this.tls_output.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tls_output.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_outputClear});
             this.tls_output.Location = new System.Drawing.Point(3, 3);
@@ -381,10 +383,10 @@
             this.trv_connections.Location = new System.Drawing.Point(3, 27);
             this.trv_connections.MinimumSize = new System.Drawing.Size(136, 307);
             this.trv_connections.Name = "trv_connections";
-            treeNode1.Name = "nd_connections";
-            treeNode1.Text = "Connections";
+            treeNode2.Name = "nd_connections";
+            treeNode2.Text = "Connections";
             this.trv_connections.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.trv_connections.SelectedImageIndex = 0;
             this.trv_connections.Size = new System.Drawing.Size(136, 310);
             this.trv_connections.TabIndex = 0;
@@ -415,6 +417,7 @@
             // 
             // tls_results
             // 
+            this.tls_results.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tls_results.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_resultsClear});
             this.tls_results.Location = new System.Drawing.Point(3, 3);
