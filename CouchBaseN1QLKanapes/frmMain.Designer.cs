@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Connections");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Connections");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.spl_workbench = new System.Windows.Forms.SplitContainer();
             this.spl_workbench_inner = new System.Windows.Forms.SplitContainer();
@@ -45,16 +45,18 @@
             this.txt_memo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.chk_saveScrapbookOnExit = new System.Windows.Forms.CheckBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tab_Results = new System.Windows.Forms.TabControl();
             this.tabPage_results = new System.Windows.Forms.TabPage();
             this.tls_results = new System.Windows.Forms.ToolStrip();
             this.btn_resultsClear = new System.Windows.Forms.ToolStripButton();
             this.txt_result = new System.Windows.Forms.TextBox();
-            this.tabPage_JSON = new System.Windows.Forms.TabPage();
             this.tabPage_output = new System.Windows.Forms.TabPage();
             this.tls_output = new System.Windows.Forms.ToolStrip();
             this.btn_outputClear = new System.Windows.Forms.ToolStripButton();
             this.txt_Output = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.tvw_JSON = new System.Windows.Forms.TreeView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.txt_elapsedTime = new System.Windows.Forms.ToolStripStatusLabel();
@@ -63,7 +65,7 @@
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.btn_addConnection = new System.Windows.Forms.ToolStripButton();
-            this.trv_connections = new System.Windows.Forms.TreeView();
+            this.tvw_connections = new System.Windows.Forms.TreeView();
             this.iml_imageList = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btn_About = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,11 +81,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.num_Limit)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.tab_Results.SuspendLayout();
             this.tabPage_results.SuspendLayout();
             this.tls_results.SuspendLayout();
             this.tabPage_output.SuspendLayout();
             this.tls_output.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spl_main)).BeginInit();
             this.spl_main.Panel1.SuspendLayout();
@@ -108,7 +115,7 @@
             // 
             // spl_workbench.Panel2
             // 
-            this.spl_workbench.Panel2.Controls.Add(this.tab_Results);
+            this.spl_workbench.Panel2.Controls.Add(this.splitContainer1);
             this.spl_workbench.Panel2.Controls.Add(this.statusStrip1);
             this.spl_workbench.Panel2MinSize = 100;
             this.spl_workbench.Size = new System.Drawing.Size(628, 341);
@@ -225,6 +232,7 @@
             this.txt_n1qlCmd.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txt_n1qlCmd.Size = new System.Drawing.Size(389, 164);
             this.txt_n1qlCmd.TabIndex = 1;
+            this.txt_n1qlCmd.Text = "select * from default";
             // 
             // panel3
             // 
@@ -273,16 +281,34 @@
             this.chk_saveScrapbookOnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.chk_saveScrapbookOnExit.UseVisualStyleBackColor = true;
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(2, 2);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.tab_Results);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.panel4);
+            this.splitContainer1.Size = new System.Drawing.Size(626, 117);
+            this.splitContainer1.SplitterDistance = 316;
+            this.splitContainer1.TabIndex = 8;
+            // 
             // tab_Results
             // 
             this.tab_Results.Controls.Add(this.tabPage_results);
-            this.tab_Results.Controls.Add(this.tabPage_JSON);
             this.tab_Results.Controls.Add(this.tabPage_output);
             this.tab_Results.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tab_Results.Location = new System.Drawing.Point(0, 0);
             this.tab_Results.Name = "tab_Results";
             this.tab_Results.SelectedIndex = 0;
-            this.tab_Results.Size = new System.Drawing.Size(628, 119);
+            this.tab_Results.Size = new System.Drawing.Size(316, 117);
             this.tab_Results.TabIndex = 7;
             // 
             // tabPage_results
@@ -292,7 +318,7 @@
             this.tabPage_results.Location = new System.Drawing.Point(4, 22);
             this.tabPage_results.Name = "tabPage_results";
             this.tabPage_results.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_results.Size = new System.Drawing.Size(620, 93);
+            this.tabPage_results.Size = new System.Drawing.Size(308, 91);
             this.tabPage_results.TabIndex = 0;
             this.tabPage_results.Text = "Results";
             this.tabPage_results.UseVisualStyleBackColor = true;
@@ -304,7 +330,7 @@
             this.btn_resultsClear});
             this.tls_results.Location = new System.Drawing.Point(3, 3);
             this.tls_results.Name = "tls_results";
-            this.tls_results.Size = new System.Drawing.Size(614, 25);
+            this.tls_results.Size = new System.Drawing.Size(302, 25);
             this.tls_results.TabIndex = 3;
             this.tls_results.Text = "toolStrip3";
             this.tls_results.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tls_results_ItemClicked);
@@ -325,19 +351,10 @@
             this.txt_result.Location = new System.Drawing.Point(0, 31);
             this.txt_result.Multiline = true;
             this.txt_result.Name = "txt_result";
+            this.txt_result.ReadOnly = true;
             this.txt_result.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txt_result.Size = new System.Drawing.Size(617, 62);
+            this.txt_result.Size = new System.Drawing.Size(305, 60);
             this.txt_result.TabIndex = 0;
-            // 
-            // tabPage_JSON
-            // 
-            this.tabPage_JSON.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_JSON.Name = "tabPage_JSON";
-            this.tabPage_JSON.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_JSON.Size = new System.Drawing.Size(620, 93);
-            this.tabPage_JSON.TabIndex = 1;
-            this.tabPage_JSON.Text = "JSON";
-            this.tabPage_JSON.UseVisualStyleBackColor = true;
             // 
             // tabPage_output
             // 
@@ -346,7 +363,7 @@
             this.tabPage_output.Location = new System.Drawing.Point(4, 22);
             this.tabPage_output.Name = "tabPage_output";
             this.tabPage_output.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_output.Size = new System.Drawing.Size(620, 93);
+            this.tabPage_output.Size = new System.Drawing.Size(308, 91);
             this.tabPage_output.TabIndex = 2;
             this.tabPage_output.Text = "Output";
             this.tabPage_output.UseVisualStyleBackColor = true;
@@ -358,7 +375,7 @@
             this.btn_outputClear});
             this.tls_output.Location = new System.Drawing.Point(3, 3);
             this.tls_output.Name = "tls_output";
-            this.tls_output.Size = new System.Drawing.Size(614, 25);
+            this.tls_output.Size = new System.Drawing.Size(302, 25);
             this.tls_output.TabIndex = 2;
             this.tls_output.Text = "toolStrip2";
             this.tls_output.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.txt_Output_ItemClicked);
@@ -379,9 +396,28 @@
             this.txt_Output.Location = new System.Drawing.Point(0, 31);
             this.txt_Output.Multiline = true;
             this.txt_Output.Name = "txt_Output";
+            this.txt_Output.ReadOnly = true;
             this.txt_Output.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txt_Output.Size = new System.Drawing.Size(617, 62);
+            this.txt_Output.Size = new System.Drawing.Size(305, 60);
             this.txt_Output.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.tvw_JSON);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(306, 117);
+            this.panel4.TabIndex = 0;
+            // 
+            // tvw_JSON
+            // 
+            this.tvw_JSON.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvw_JSON.Location = new System.Drawing.Point(0, 0);
+            this.tvw_JSON.Name = "tvw_JSON";
+            this.tvw_JSON.Size = new System.Drawing.Size(302, 113);
+            this.tvw_JSON.TabIndex = 0;
             // 
             // statusStrip1
             // 
@@ -429,7 +465,7 @@
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.toolStrip2);
-            this.panel2.Controls.Add(this.trv_connections);
+            this.panel2.Controls.Add(this.tvw_connections);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -463,22 +499,22 @@
             this.btn_addConnection.Size = new System.Drawing.Size(23, 22);
             this.btn_addConnection.Text = "Add";
             // 
-            // trv_connections
+            // tvw_connections
             // 
-            this.trv_connections.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tvw_connections.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trv_connections.ImageIndex = 0;
-            this.trv_connections.ImageList = this.iml_imageList;
-            this.trv_connections.Location = new System.Drawing.Point(3, 28);
-            this.trv_connections.Name = "trv_connections";
-            treeNode1.Name = "nd_connections";
-            treeNode1.Text = "Connections";
-            this.trv_connections.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            this.trv_connections.SelectedImageIndex = 0;
-            this.trv_connections.Size = new System.Drawing.Size(153, 308);
-            this.trv_connections.TabIndex = 0;
+            this.tvw_connections.ImageIndex = 0;
+            this.tvw_connections.ImageList = this.iml_imageList;
+            this.tvw_connections.Location = new System.Drawing.Point(3, 28);
+            this.tvw_connections.Name = "tvw_connections";
+            treeNode2.Name = "nd_connections";
+            treeNode2.Text = "Connections";
+            this.tvw_connections.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+            this.tvw_connections.SelectedImageIndex = 0;
+            this.tvw_connections.Size = new System.Drawing.Size(153, 308);
+            this.tvw_connections.TabIndex = 0;
             // 
             // iml_imageList
             // 
@@ -532,6 +568,10 @@
             this.toolStrip1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.tab_Results.ResumeLayout(false);
             this.tabPage_results.ResumeLayout(false);
             this.tabPage_results.PerformLayout();
@@ -541,6 +581,7 @@
             this.tabPage_output.PerformLayout();
             this.tls_output.ResumeLayout(false);
             this.tls_output.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.spl_main.Panel1.ResumeLayout(false);
@@ -566,10 +607,9 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel txt_elapsedTime;
-        private System.Windows.Forms.TextBox txt_result;
         private System.Windows.Forms.TextBox txt_memo;
         private System.Windows.Forms.SplitContainer spl_main;
-        private System.Windows.Forms.TreeView trv_connections;
+        private System.Windows.Forms.TreeView tvw_connections;
         private System.Windows.Forms.CheckBox chk_saveScrapbookOnExit;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
@@ -577,7 +617,6 @@
         private System.Windows.Forms.ImageList iml_imageList;
         private System.Windows.Forms.TabControl tab_Results;
         private System.Windows.Forms.TabPage tabPage_results;
-        private System.Windows.Forms.TabPage tabPage_JSON;
         private System.Windows.Forms.TabPage tabPage_output;
         private System.Windows.Forms.TextBox txt_Output;
         private System.Windows.Forms.ToolStrip tls_output;
@@ -596,6 +635,10 @@
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripButton btn_addConnection;
+        private System.Windows.Forms.TextBox txt_result;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.TreeView tvw_JSON;
     }
 }
 
