@@ -140,7 +140,8 @@ namespace CouchBaseN1QLKanapes
             {
                 Servers = new List<Uri>
                       {
-                        new Uri("http://192.168.1.4:8091/pools"),
+                        //new Uri("http://10.124.10.116:8091/pools"),
+                        new Uri("http://192.168.1.3:8091/pools"),
                       }
             };
             //Async
@@ -189,94 +190,82 @@ namespace CouchBaseN1QLKanapes
         private void SetJson2Tree(string _s)
         {
             this.tvw_JSON.Nodes.Clear();
-            JArray array = JArray.Parse(_s);
-            foreach (JObject row in array)
+            this.LoadJsonToTreeView(this.tvw_JSON, _s);
+        }
+
+
+        void LoadJsonToTreeView(TreeView treeView, string json)
+        {
+            if (string.IsNullOrWhiteSpace(json))
             {
-                TreeNode parent = Json2Tree(row);
-                //parent.Text = "Root Object";
-                this.tvw_JSON.Nodes.Add(parent);
+                return;
+            }
+            try {
+                var @object = JObject.Parse(json);
+                AddObjectNodes(@object, "object", treeView.Nodes);
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    var @object = JArray.Parse(json);
+                    AddObjectNodes(@object, "array", treeView.Nodes);
+                }
+                catch (Exception ex1) {
+                    logOutput(ex1.Message, true);
+                }
+            }
+
+            
+        }
+
+        void AddObjectNodes(JArray array, string name, TreeNodeCollection parent)
+        {
+            var node = new TreeNode(name);
+            parent.Add(node);
+
+            for (var i = 0; i < array.Count; i++)
+            {
+                AddTokenNodes(array[i], string.Format("[{0}]", i), node.Nodes);
             }
         }
 
-        private TreeNode Json2Tree(JObject obj)
+        void AddObjectNodes(JObject @object, string name, TreeNodeCollection parent)
         {
-            //create the parent node
-            TreeNode parent = new TreeNode();
-            //loop through the obj. all token should be pair<key, value>
-            foreach (var token in obj)
+            var node = new TreeNode(name);
+            parent.Add(node);
+
+            foreach (var property in @object.Properties())
             {
-                //change the display Content of the parent
-                parent.Text = token.Key.ToString();
-                //create the child node
-                TreeNode child = new TreeNode();
-                child.Text = token.Key.ToString();
-                //check if the value is of type obj recall the method
-                if (token.Value.Type.ToString() == "Object")
-                {
-                    // child.Text = token.Key.ToString();
-                    //create a new JObject using the the Token.value
-                    JObject o = (JObject)token.Value;
-                    //recall the method
-                    child = Json2Tree(o);
-                    //add the child to the parentNode
-                    parent.Nodes.Add(child);
-                }
-                //if type is of array
-                else if (token.Value.Type.ToString() == "Array")
-                {
-                    int ix = -1;
-                    //  child.Text = token.Key.ToString();
-                    //loop though the array
-                    foreach (var itm in token.Value)
-                    {
-                        //check if value is an Array of objects
-                        if (itm.Type.ToString() == "Object")
-                        {
-                            TreeNode objTN = new TreeNode();
-                            //child.Text = token.Key.ToString();
-                            //call back the method
-                            ix++;
-
-                            JObject o = (JObject)itm;
-                            objTN = Json2Tree(o);
-                            objTN.Text = token.Key.ToString() + "[" + ix + "]";
-                            child.Nodes.Add(objTN);
-                            //parent.Nodes.Add(child);
-                        }
-                        //regular array string, int, etc
-                        else if (itm.Type.ToString() == "Array")
-                        {
-                            ix++;
-                            TreeNode dataArray = new TreeNode();
-                            foreach (var data in itm)
-                            {
-                                dataArray.Text = token.Key.ToString() + "[" + ix + "]";
-                                dataArray.Nodes.Add(data.ToString());
-                            }
-                            child.Nodes.Add(dataArray);
-                        }
-
-                        else
-                        {
-                            child.Nodes.Add(itm.ToString());
-                        }
-                    }
-                    parent.Nodes.Add(child);
-                }
-                else
-                {
-                    //if token.Value is not nested
-                    // child.Text = token.Key.ToString();
-                    //change the value into N/A if value == null or an empty string 
-                    if (token.Value.ToString() == "")
-                        child.Nodes.Add("N/A");
-                    else
-                        child.Nodes.Add(token.Value.ToString());
-                    parent.Nodes.Add(child);
-                }
+                AddTokenNodes(property.Value, property.Name, node.Nodes);
             }
-            return parent;
+        }
 
+        void AddArrayNodes(JArray array, string name, TreeNodeCollection parent)
+        {
+            var node = new TreeNode(name);
+            parent.Add(node);
+
+            for (var i = 0; i < array.Count; i++)
+            {
+                AddTokenNodes(array[i], string.Format("[{0}]", i), node.Nodes);
+            }
+        }
+
+        void AddTokenNodes(JToken token, string name, TreeNodeCollection parent)
+        {
+            if (token is JValue)
+            {
+                parent.Add(new TreeNode(string.Format("{0}: {1}", name, ((JValue)token).Value)));
+            }
+            else if (token is JArray)
+            {
+                AddArrayNodes((JArray)token, name, parent);
+            }
+            else if (token is JObject)
+            {
+                AddObjectNodes((JObject)token, name, parent);
+            }
         }
     }
 }
