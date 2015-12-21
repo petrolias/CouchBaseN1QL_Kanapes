@@ -19,10 +19,12 @@ namespace CouchBaseN1QLKanapes
 {
     public partial class frmMain : Form
     {
+        Logger l; 
         public frmMain()
         {
             InitializeComponent();
             this.Text += System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            this.l = new Logger(this.txt_result, this.txt_Output);
         }
 
         private void frmMain_KeyUp(object sender, KeyEventArgs e)
@@ -37,41 +39,6 @@ namespace CouchBaseN1QLKanapes
         {
             this.Run();
         }
-
-
-
-        private void logResults(string _value, bool _appentText = true)
-        {
-            if (!_appentText)
-            {
-                this.txt_result.Text = "";
-            }
-            this.txt_result.AppendText(_value + Environment.NewLine);
-        }
-
-        private void logOutput(string _value, bool _appentText = true)
-        {
-            if (!_appentText)
-            {
-                this.txt_Output.Text = "";
-            }
-            this.txt_Output.AppendText(DateTime.Now.ToString() + " -> " + _value + Environment.NewLine);
-        }
-
-        //delegate void SetTextCallback(string _value, bool _appentText = true);
-
-        //private void SetTextlogOutput(string _value, bool _appentText = true)
-        //{
-        //    if (this.txt_result.InvokeRequired)
-        //    {
-        //        SetTextCallback d = new SetTextCallback(SetTextlogOutput);
-        //        this.Invoke(d, new object[] { _value, _appentText });
-        //    }
-        //    else
-        //    {
-        //        this.txt_result.Text = _value;
-        //    }
-        //}
 
         private void txt_Output_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -93,7 +60,7 @@ namespace CouchBaseN1QLKanapes
             if (this.txt_n1qlCmd.SelectedText == "" && this.txt_n1qlCmd.Text == "")
             {
                 string s = "A big nothing was send to Couchbase...";
-                this.logOutput(s);
+                this.l.logOutput(s);
                 return;
             }
             //string n1qlStr = "";
@@ -111,22 +78,19 @@ namespace CouchBaseN1QLKanapes
             var watch = System.Diagnostics.Stopwatch.StartNew();
             try
             {
-                this.logOutput(n1qlStr);
+                this.l.logOutput(n1qlStr);
                 this.n1qlRun();
-
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error");
-                this.logOutput(ex.Message);
+                this.l.logOutput(ex.Message);
             }
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
             string elapsedTime = TimeSpan.FromMilliseconds(elapsedMs).ToString(@"hh\:mm\:ss\.fff") + " ms"; ;
             this.txt_elapsedTime.Text = elapsedTime;
-            this.logOutput(elapsedTime);
+            this.l.logOutput(elapsedTime);
             this.Cursor = Cursors.Default;
         }
         public static async Task<Couchbase.N1QL.IQueryResult<dynamic>> asyncQuery(string _value, IBucket _bucket)
@@ -155,7 +119,7 @@ namespace CouchBaseN1QLKanapes
                 IBucket bucket = null;
                 try
                 {
-                    this.logResults("", false);
+                    this.l.logResults("", false);
                     //use the bucket here
                     using (bucket = cluster.OpenBucket())
                     {
@@ -172,8 +136,8 @@ namespace CouchBaseN1QLKanapes
                         //    SetJson2Tree(row.ToString());
                         //}
                         string jsonResult = JsonConvert.SerializeObject(result.Rows, Formatting.Indented);
-                        this.logResults(jsonResult);
-                        this.SetJson2Tree(jsonResult);
+                        this.l.logResults(jsonResult);
+                        new JSONViewHelper().LoadJsonToTreeView(this.tvw_JSON, jsonResult);
                     }
                 }
                 finally
@@ -185,87 +149,6 @@ namespace CouchBaseN1QLKanapes
                 }
             }
 
-        }
-
-        private void SetJson2Tree(string _s)
-        {
-            this.tvw_JSON.Nodes.Clear();
-            this.LoadJsonToTreeView(this.tvw_JSON, _s);
-        }
-
-
-        void LoadJsonToTreeView(TreeView treeView, string json)
-        {
-            if (string.IsNullOrWhiteSpace(json))
-            {
-                return;
-            }
-            try {
-                var @object = JObject.Parse(json);
-                AddObjectNodes(@object, "object", treeView.Nodes);
-            }
-            catch (Exception ex)
-            {
-                try
-                {
-                    var @object = JArray.Parse(json);
-                    AddObjectNodes(@object, "array", treeView.Nodes);
-                }
-                catch (Exception ex1) {
-                    logOutput(ex1.Message, true);
-                }
-            }
-
-            
-        }
-
-        void AddObjectNodes(JArray array, string name, TreeNodeCollection parent)
-        {
-            var node = new TreeNode(name);
-            parent.Add(node);
-
-            for (var i = 0; i < array.Count; i++)
-            {
-                AddTokenNodes(array[i], string.Format("[{0}]", i), node.Nodes);
-            }
-        }
-
-        void AddObjectNodes(JObject @object, string name, TreeNodeCollection parent)
-        {
-            var node = new TreeNode(name);
-            parent.Add(node);
-
-            foreach (var property in @object.Properties())
-            {
-                AddTokenNodes(property.Value, property.Name, node.Nodes);
-            }
-        }
-
-        void AddArrayNodes(JArray array, string name, TreeNodeCollection parent)
-        {
-            var node = new TreeNode(name);
-            parent.Add(node);
-
-            for (var i = 0; i < array.Count; i++)
-            {
-                AddTokenNodes(array[i], string.Format("[{0}]", i), node.Nodes);
-            }
-        }
-
-        void AddTokenNodes(JToken token, string name, TreeNodeCollection parent)
-        {
-            if (token is JValue)
-            {
-                parent.Add(new TreeNode(string.Format("{0}: {1}", name, ((JValue)token).Value)));
-            }
-            else if (token is JArray)
-            {
-                AddArrayNodes((JArray)token, name, parent);
-            }
-            else if (token is JObject)
-            {
-                AddObjectNodes((JObject)token, name, parent);
-            }
         }
     }
 }
