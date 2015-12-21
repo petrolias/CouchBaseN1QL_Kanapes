@@ -14,12 +14,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace CouchBaseN1QLKanapes
 {
     public partial class frmMain : Form
     {
-        Logger l; 
+        Logger l;
+        Stopwatch watch = new Stopwatch();
         public frmMain()
         {
             InitializeComponent();
@@ -75,22 +77,33 @@ namespace CouchBaseN1QLKanapes
             }
 
             this.Cursor = Cursors.WaitCursor;
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            this.watch = System.Diagnostics.Stopwatch.StartNew();
             try
             {
                 this.l.logOutput(n1qlStr);
-                this.n1qlRun();
+                this.l.logResults("", false);
+                //this.n1qlRun();
+                BackgroundWorker bw = new BackgroundWorker();
+                bw.WorkerSupportsCancellation = true;
+                bw.WorkerReportsProgress = true;
+                bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+                bw.ProgressChanged +=  new ProgressChangedEventHandler(bw_ProgressChanged);
+                bw.RunWorkerCompleted +=  new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+                if (bw.IsBusy != true)
+                {
+                    bw.RunWorkerAsync();
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error");
                 this.l.logOutput(ex.Message);
             }
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-            string elapsedTime = TimeSpan.FromMilliseconds(elapsedMs).ToString(@"hh\:mm\:ss\.fff") + " ms"; ;
-            this.txt_elapsedTime.Text = elapsedTime;
-            this.l.logOutput(elapsedTime);
+            //watch.Stop();
+            //var elapsedMs = watch.ElapsedMilliseconds;
+            //string elapsedTime = TimeSpan.FromMilliseconds(elapsedMs).ToString(@"hh\:mm\:ss\.fff") + " ms"; ;
+            //this.txt_elapsedTime.Text = elapsedTime;
+            //this.l.logOutput(elapsedTime);
             this.Cursor = Cursors.Default;
         }
         public static async Task<Couchbase.N1QL.IQueryResult<dynamic>> asyncQuery(string _value, IBucket _bucket)
@@ -98,7 +111,7 @@ namespace CouchBaseN1QLKanapes
             var result = await _bucket.QueryAsync<dynamic>(_value);
             return result;
         }
-        private void n1qlRun()
+        private void n1qlRun(BackgroundWorker _bw)
         {
             var config = new ClientConfiguration
             {
@@ -113,13 +126,13 @@ namespace CouchBaseN1QLKanapes
             //var bucket = cluster.OpenBucket();
             //Task<Couchbase.N1QL.IQueryResult<dynamic>> longRunningTask = asyncQuery(n1qlStr, bucket);
             //Couchbase.N1QL.IQueryResult<dynamic> result = await longRunningTask;
-
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             using (var cluster = new Cluster(config))
             {
                 IBucket bucket = null;
                 try
                 {
-                    this.l.logResults("", false);
+                   // this.l.logResults("", false);
                     //use the bucket here
                     using (bucket = cluster.OpenBucket())
                     {
@@ -135,9 +148,9 @@ namespace CouchBaseN1QLKanapes
                         //    this.logResults(row.ToString());
                         //    SetJson2Tree(row.ToString());
                         //}
+
                         string jsonResult = JsonConvert.SerializeObject(result.Rows, Formatting.Indented);
-                        this.l.logResults(jsonResult);
-                        new JSONViewHelper().LoadJsonToTreeView(this.tvw_JSON, jsonResult);
+                        _bw.ReportProgress(100, jsonResult);
                     }
                 }
                 finally
@@ -149,6 +162,43 @@ namespace CouchBaseN1QLKanapes
                 }
             }
 
+        }
+
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+                if ((worker.CancellationPending == true))
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    this.n1qlRun(worker);
+                }
+        }
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+             this.l.logResults(e.UserState.ToString());
+             new JSONViewHelper().LoadJsonToTreeView(this.tvw_JSON, e.UserState.ToString());
+        }
+        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if ((e.Cancelled == true))
+            {
+                this.l.logOutput("N1QL Canceled!");
+                this.l.logResults("N1QL Canceled!");
+            }
+            else if (!(e.Error == null))
+            {
+                this.l.logOutput("N1QL Error: " + e.Error.Message);
+                this.l.logResults("N1QL Error: " + e.Error.Message);
+            }
+            else
+            {
+              
+            }
+            l.logWatch(watch, this.txt_elapsedTime);
+           
         }
     }
 }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Connections");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Connections");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.spl_workbench = new System.Windows.Forms.SplitContainer();
             this.spl_workbench_inner = new System.Windows.Forms.SplitContainer();
@@ -69,6 +69,7 @@
             this.iml_imageList = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btn_About = new System.Windows.Forms.ToolStripMenuItem();
+            this.bw_run = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.spl_workbench)).BeginInit();
             this.spl_workbench.Panel1.SuspendLayout();
             this.spl_workbench.Panel2.SuspendLayout();
@@ -508,10 +509,10 @@
             this.tvw_connections.ImageList = this.iml_imageList;
             this.tvw_connections.Location = new System.Drawing.Point(3, 28);
             this.tvw_connections.Name = "tvw_connections";
-            treeNode2.Name = "nd_connections";
-            treeNode2.Text = "Connections";
+            treeNode1.Name = "nd_connections";
+            treeNode1.Text = "Connections";
             this.tvw_connections.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.tvw_connections.SelectedImageIndex = 0;
             this.tvw_connections.Size = new System.Drawing.Size(153, 308);
             this.tvw_connections.TabIndex = 0;
@@ -538,6 +539,10 @@
             this.btn_About.Size = new System.Drawing.Size(52, 20);
             this.btn_About.Text = "About";
             this.btn_About.Click += new System.EventHandler(this.btn_About_Click_1);
+            // 
+            // bw_run
+            // 
+            this.bw_run.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bw_DoWork);
             // 
             // frmMain
             // 
@@ -639,6 +644,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TreeView tvw_JSON;
+        private System.ComponentModel.BackgroundWorker bw_run;
     }
 }
 
